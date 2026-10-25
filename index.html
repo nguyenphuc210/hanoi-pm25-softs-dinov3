@@ -342,10 +342,17 @@
 
         <div class="config-group">
             <label>Nguồn dữ liệu đầu vào (Input)</label>
-            <select id="dataSource" onchange="toggleUploadInput()">
-                <option value="dongda" selected>API Trạm Đống Đa (Hà Nội)</option>
-                <option value="caugiay">API Trạm Cầu Giấy (Hà Nội)</option>
-                <option value="hoankiem">API Trạm Hoàn Kiếm (Hà Nội)</option>
+            <select id="dataSource" onchange="toggleUploadInput(); if(this.value !== 'upload') runInference();">
+                <option value="Trạm Đống Đa (Láng Hạ)" selected>Trạm Đống Đa (Láng Hạ - ĐSQ Mỹ)</option>
+                <option value="Trạm Cầu Giấy (Dịch Vọng)">Trạm Cầu Giấy (Dịch Vọng)</option>
+                <option value="Trạm Hoàn Kiếm (Hồ Gươm)">Trạm Hoàn Kiếm (Hồ Gươm / Phố Cổ)</option>
+                <option value="Trạm Ba Đình (Kim Mã)">Trạm Ba Đình (Kim Mã / Liễu Giai)</option>
+                <option value="Trạm Hai Bà Trưng (Bách Khoa)">Trạm Hai Bà Trưng (Bách Khoa)</option>
+                <option value="Trạm Tây Hồ (Quảng An)">Trạm Tây Hồ (Quảng An / Hồ Tây)</option>
+                <option value="Trạm Hà Đông (Quang Trung)">Trạm Hà Đông (Quang Trung / Cửa ngõ Tây Nam)</option>
+                <option value="Trạm Long Biên (Nguyễn Văn Cừ)">Trạm Long Biên (Nguyễn Văn Cừ / Phía Đông)</option>
+                <option value="Trạm Nam Từ Liêm (Mỹ Đình)">Trạm Nam Từ Liêm (Mỹ Đình / Sân vận động)</option>
+                <option value="Trạm Bắc Từ Liêm (Cầu Diễn)">Trạm Bắc Từ Liêm (Cầu Diễn / Ven đô)</option>
                 <option value="upload">Upload Custom Tensor / CSV (.csv)</option>
             </select>
         </div>
