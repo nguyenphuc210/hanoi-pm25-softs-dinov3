@@ -395,12 +395,10 @@
             <div class="card">
                 <div class="metric-title">MAE (ĐỘ LỆCH CHUẨN)</div>
                 <p class="metric-value" id="val-mae">0.124</p>
-                <div class="metric-sub" style="color: var(--success);">↓ Càng thấp càng tốt</div>
             </div>
             <div class="card">
                 <div class="metric-title">MSE / RMSE</div>
                 <p class="metric-value" id="val-rmse">0.178</p>
-                <div class="metric-sub" style="color: var(--success);">↓ Càng thấp càng tốt</div>
             </div>
             <div class="card">
                 <div class="metric-title">MEAN ABS. PERC. ERROR (MAPE)</div>
@@ -560,6 +558,7 @@
                 formData.append('file', fileInput.files[0]);
             }
 
+            const clientStart = performance.now();
             try {
                 // Gọi API backend
                 const response = await fetch('/api/predict', {
@@ -572,7 +571,8 @@
                 }
 
                 const res = await response.json();
-                updateUI(res);
+                const roundTrip = ((performance.now() - clientStart) / 1000).toFixed(2);
+                updateUI(res, roundTrip);
             } catch (err) {
                 console.warn('API backend chưa khả dụng hoặc đang chạy file tĩnh, dùng simulation thông minh:', err);
                 simulateInference();
@@ -586,8 +586,9 @@
         }
 
         // Cập nhật giao diện từ kết quả thật của Model
-        function updateUI(res) {
-            document.getElementById('statusText').innerText = `Status: Inference Completed (${res.inference_time})`;
+        function updateUI(res, roundTrip) {
+            const rtText = roundTrip ? ` | Round-trip: ${roundTrip}s` : '';
+            document.getElementById('statusText').innerText = `Status: Inference Completed (Server: ${res.inference_time}${rtText})`;
             
             // Cập nhật 4 cards
             document.getElementById('val-pred').innerText = res.metrics.peak_pm25;
