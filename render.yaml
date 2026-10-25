@@ -1,0 +1,25 @@
+# Render Blueprint Configuration (Deploy to Render.com)
+# https://render.com/docs/blueprint-spec
+
+services:
+  # Option 1: Full Python FastAPI Web Service with PyTorch AI Model
+  - type: web
+    name: hanoi-pm25-softs-dinov3
+    env: python
+    region: singapore # hoặc oregon / frankfurt
+    plan: free
+    buildCommand: pip install --no-cache-dir -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.12
+      - key: PORT
+        value: 10000
+
+  # Option 2: Static Site (100% Free, Zero Cold Starts, Instant Deploy)
+  # - type: static
+  #   name: hanoi-pm25-dashboard-static
+  #   publishDir: .
+  #   buildCommand: ""

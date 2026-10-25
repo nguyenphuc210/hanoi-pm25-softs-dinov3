@@ -1,0 +1,20 @@
+{
+  "model_architecture": "SOFTS with DINOv3 Backbone",
+  "seq_len": 96,
+  "pred_len": 24,
+  "features": 7,
+  "feature_names": [
+    "PM2.5",
+    "temperature",
+    "humidity",
+    "wind_speed",
+    "precipitation",
+    "pressure",
+    "PM10"
+  ],
+  "d_model": 128,
+  "dinov3_layers": 2,
+  "dinov3_dim": 192,
+  "dinov3_heads": 6,
+  "status": "Exported & Ready for Production Deployment"
+}
