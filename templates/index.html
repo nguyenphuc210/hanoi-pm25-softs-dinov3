@@ -326,54 +326,54 @@
 </head>
 <body>
 
-    <!-- SIDEBAR: CẤU HÌNH MÔ HÌNH (MLOps) -->
+    <!-- SIDEBAR: MLOPS CONFIGURATION -->
     <div class="sidebar">
         <h2>⚙️ MLOps Configuration</h2>
         
         <div class="config-group">
-            <label>Kiến trúc Model</label>
+            <label>Model Architecture</label>
             <select id="modelArch">
                 <option value="softs_dinov3" selected>SOFTS (DINOv3 Backbone)</option>
-                <option value="softs_star">SOFTS (Gốc - STAR Module)</option>
+                <option value="softs_star">SOFTS (Standard - STAR Module)</option>
                 <option value="patchtst">PatchTST</option>
                 <option value="itransformer">iTransformer</option>
             </select>
         </div>
 
         <div class="config-group">
-            <label>Nguồn dữ liệu đầu vào (Input)</label>
+            <label>Input Data Source</label>
             <select id="dataSource" onchange="toggleUploadInput(); if(this.value !== 'upload') runInference();">
-                <option value="Trạm Đống Đa (Láng Hạ)" selected>Trạm Đống Đa (Láng Hạ - ĐSQ Mỹ)</option>
-                <option value="Trạm Cầu Giấy (Dịch Vọng)">Trạm Cầu Giấy (Dịch Vọng)</option>
-                <option value="Trạm Hoàn Kiếm (Hồ Gươm)">Trạm Hoàn Kiếm (Hồ Gươm / Phố Cổ)</option>
-                <option value="Trạm Ba Đình (Kim Mã)">Trạm Ba Đình (Kim Mã / Liễu Giai)</option>
-                <option value="Trạm Hai Bà Trưng (Bách Khoa)">Trạm Hai Bà Trưng (Bách Khoa)</option>
-                <option value="Trạm Tây Hồ (Quảng An)">Trạm Tây Hồ (Quảng An / Hồ Tây)</option>
-                <option value="Trạm Hà Đông (Quang Trung)">Trạm Hà Đông (Quang Trung / Cửa ngõ Tây Nam)</option>
-                <option value="Trạm Long Biên (Nguyễn Văn Cừ)">Trạm Long Biên (Nguyễn Văn Cừ / Phía Đông)</option>
-                <option value="Trạm Nam Từ Liêm (Mỹ Đình)">Trạm Nam Từ Liêm (Mỹ Đình / Sân vận động)</option>
-                <option value="Trạm Bắc Từ Liêm (Cầu Diễn)">Trạm Bắc Từ Liêm (Cầu Diễn / Ven đô)</option>
-                <option value="upload">Upload Custom Tensor / CSV (.csv)</option>
+                <option value="Trạm Đống Đa (Láng Hạ)" selected>Dong Da Station (Lang Ha - US Embassy)</option>
+                <option value="Trạm Cầu Giấy (Dịch Vọng)">Cau Giay Station (Dich Vong)</option>
+                <option value="Trạm Hoàn Kiếm (Hồ Gươm)">Hoan Kiem Station (Sword Lake / Old Quarter)</option>
+                <option value="Trạm Ba Đình (Kim Mã)">Ba Dinh Station (Kim Ma / National Admin)</option>
+                <option value="Trạm Hai Bà Trưng (Bách Khoa)">Hai Ba Trung Station (Bach Khoa Area)</option>
+                <option value="Trạm Tây Hồ (Quảng An)">Tay Ho Station (Quang An / West Lake)</option>
+                <option value="Trạm Hà Đông (Quang Trung)">Ha Dong Station (Quang Trung / SW Gateway)</option>
+                <option value="Trạm Long Biên (Nguyễn Văn Cừ)">Long Bien Station (Nguyen Van Cu / East)</option>
+                <option value="Trạm Nam Từ Liêm (Mỹ Đình)">Nam Tu Liem Station (My Dinh Stadium)</option>
+                <option value="Trạm Bắc Từ Liêm (Cầu Diễn)">Bac Tu Liem Station (Cau Dien / Suburban)</option>
+                <option value="upload">Upload Custom CSV (.csv)</option>
             </select>
         </div>
 
         <div class="config-group" id="uploadGroup" style="display: none;">
-            <label>Tải file dữ liệu (.csv)</label>
+            <label>Upload Dataset (.csv)</label>
             <input type="file" id="csvFileInput" accept=".csv">
         </div>
 
         <div class="hyperparameters">
-            <div class="hp-header">Hyperparameters (Mô hình)</div>
-            <div class="hp-row"><span class="hp-label">Sequence (T)</span><span class="hp-val">96 giờ</span></div>
-            <div class="hp-row"><span class="hp-label">Horizon (H)</span><span class="hp-val">24 giờ</span></div>
+            <div class="hp-header">HYPERPARAMETERS (MODEL)</div>
+            <div class="hp-row"><span class="hp-label">Sequence (T)</span><span class="hp-val">96 hours</span></div>
+            <div class="hp-row"><span class="hp-label">Horizon (H)</span><span class="hp-val">24 hours</span></div>
             <div class="hp-row"><span class="hp-label">Features (C)</span><span class="hp-val">7 (MS)</span></div>
-            <div class="hp-row"><span class="hp-label">Stride (S)</span><span class="hp-val">1 giờ</span></div>
+            <div class="hp-row"><span class="hp-label">Stride (S)</span><span class="hp-val">1 hour</span></div>
             <div class="hp-row"><span class="hp-label">Loss Function</span><span class="hp-val">MSE + L1</span></div>
             <div class="hp-row"><span class="hp-label">Encoder Backbone</span><span class="hp-val" style="color: #4ade80;">DINOv3 ViT</span></div>
         </div>
 
         <button class="btn-run" id="btnRun" onclick="runInference()">
-            <span>▶</span> BẮT ĐẦU SUY LUẬN (INFERENCE)
+            <span>▶</span> RUN AI INFERENCE
         </button>
     </div>
 
@@ -381,8 +381,8 @@
     <div class="main-content">
         <div class="header-section">
             <div>
-                <h1 class="header-title">Hệ thống Dự báo Ô nhiễm không khí PM2.5 (SOFTS)</h1>
-                <p class="header-subtitle">Real-time Inference Dashboard & Model Evaluation Metrics (Hà Nội, 4-Year Dataset)</p>
+                <h1 class="header-title">Hanoi PM2.5 Air Pollution Forecasting System (SOFTS)</h1>
+                <p class="header-subtitle">Real-time Inference Dashboard & Model Evaluation Metrics (Hanoi, 4-Year Dataset)</p>
             </div>
             <div class="status-badge" id="statusBadge">
                 <span class="status-dot"></span>
@@ -390,17 +390,17 @@
             </div>
         </div>
 
-        <!-- 4 BẢNG HIỂN THỊ THÔNG SỐ SUY LUẬN (CARD TRÊN SLIDE 3) -->
+        <!-- 4 METRIC CARDS -->
         <div class="metrics-grid">
             <div class="card">
-                <div class="metric-title">ĐỈNH PM2.5 DỰ BÁO (H=24h)</div>
-                <p class="metric-value" id="val-pred">85.4</p>
-                <div class="metric-sub" id="val-status" style="color: var(--danger);">
-                    ⚠ Cảnh báo: Vượt mức an toàn
+                <div class="metric-title">PEAK PM2.5 FORECAST (H=24H)</div>
+                <p class="metric-value" id="val-pred">38.5</p>
+                <div class="metric-sub" id="val-status" style="color: var(--success);">
+                    ● Safe Air Quality (QCVN 05:2023)
                 </div>
             </div>
             <div class="card">
-                <div class="metric-title">MAE (ĐỘ LỆCH CHUẨN)</div>
+                <div class="metric-title">NORMALIZED MAE</div>
                 <p class="metric-value" id="val-mae">0.124</p>
             </div>
             <div class="card">
@@ -410,16 +410,16 @@
             <div class="card">
                 <div class="metric-title">MEAN ABS. PERC. ERROR (MAPE)</div>
                 <p class="metric-value" id="val-mape">11.3%</p>
-                <div class="metric-sub" style="color: var(--success);">Kỳ vọng: &lt; 15%</div>
+                <div class="metric-sub" style="color: var(--success);">Target: &lt; 15%</div>
             </div>
         </div>
 
-        <!-- VÙNG BIỂU ĐỒ (SLIDE 3) -->
+        <!-- CHARTS GRID -->
         <div class="charts-grid">
-            <!-- Biểu đồ Time Series -->
+            <!-- Time Series Chart -->
             <div class="chart-card">
                 <div class="chart-header">
-                    <span>Biểu đồ Dự báo &amp; Vùng tin cậy (Confidence Interval)</span>
+                    <span>24-Hour Forecast &amp; 95% Confidence Interval</span>
                     <span class="badge">Horizon: 24h</span>
                 </div>
                 <div class="chart-container">
@@ -427,14 +427,14 @@
                 </div>
             </div>
 
-            <!-- Biểu đồ Explainable AI (XAI) -->
+            <!-- Explainable AI (XAI) Chart -->
             <div class="chart-card">
                 <div class="chart-header">
                     <span>Feature Importance (XAI)</span>
                     <span class="badge">XAI Module</span>
                 </div>
                 <p style="font-size: 0.8rem; color: #64748b; margin-top: 0; margin-bottom: 12px;">
-                    Mức độ đóng góp của các yếu tố khí tượng vào kết quả dự báo PM2.5.
+                    Relative contribution of meteorological factors to PM2.5 predictions.
                 </p>
                 <div class="chart-container">
                     <canvas id="xaiChart"></canvas>
@@ -481,7 +481,7 @@
                         tension: 0.35
                     },
                     {
-                        label: 'Đường dự báo tương lai (SOFTS-DINOv3)',
+                        label: 'Future Forecast (SOFTS-DINOv3)',
                         data: Array(initialLabels.length).fill(null),
                         borderColor: '#ef4444',
                         borderWidth: 2.5,
@@ -491,7 +491,7 @@
                         tension: 0.35
                     },
                     {
-                        label: 'Dữ liệu quá khứ thực tế (Lịch sử T)',
+                        label: 'Historical Data (Past 16h)',
                         data: Array(initialLabels.length).fill(null),
                         borderColor: '#2563eb',
                         borderWidth: 2,
@@ -511,7 +511,7 @@
                 },
                 scales: {
                     y: {
-                        title: { display: true, text: 'Nồng độ PM2.5 (µg/m³)' },
+                        title: { display: true, text: 'PM2.5 Concentration (µg/m³)' },
                         grid: { color: '#f1f5f9' }
                     },
                     x: {
@@ -526,9 +526,9 @@
         const xaiChart = new Chart(xaiCtx, {
             type: 'bar',
             data: {
-                labels: ['PM2.5 Quá khứ', 'Tốc độ Gió', 'Nhiệt độ', 'Lượng Mưa', 'Độ ẩm'],
+                labels: ['Historical PM2.5', 'Wind Speed', 'Temperature', 'Precipitation', 'Humidity'],
                 datasets: [{
-                    label: 'Mức độ đóng góp (%)',
+                    label: 'Contribution (%)',
                     data: [45.2, 23.1, 15.4, 9.8, 6.5],
                     backgroundColor: ['#2563eb', '#10b981', '#f59e0b', '#8b5cf6', '#64748b'],
                     borderRadius: 4
@@ -543,7 +543,7 @@
                     tooltip: { callbacks: { label: (ctx) => ` ${ctx.raw}%` } }
                 },
                 scales: {
-                    x: { beginAtZero: true, max: 100, title: { display: true, text: 'Độ quan trọng (%)' } },
+                    x: { beginAtZero: true, max: 100, title: { display: true, text: 'Relative Importance (%)' } },
                     y: { grid: { display: false } }
                 }
             }
@@ -553,7 +553,7 @@
         async function runInference() {
             const btn = document.getElementById('btnRun');
             const statusText = document.getElementById('statusText');
-            btn.innerHTML = '<span>⏳</span> ĐANG SUY LUẬN (INFERENCING)...';
+            btn.innerHTML = '<span>⏳</span> INFERENCING...';
             btn.disabled = true;
 
             const station = document.getElementById('dataSource').value;
@@ -581,13 +581,13 @@
                 const roundTrip = ((performance.now() - clientStart) / 1000).toFixed(2);
                 updateUI(res, roundTrip);
             } catch (err) {
-                console.warn('API backend chưa khả dụng hoặc đang chạy file tĩnh, dùng simulation thông minh:', err);
+                console.warn('API backend error, running fallback simulation:', err);
                 simulateInference();
             } finally {
-                btn.innerHTML = '<span>▶</span> SUY LUẬN THÀNH CÔNG';
+                btn.innerHTML = '<span>✔</span> INFERENCE COMPLETED';
                 btn.disabled = false;
                 setTimeout(() => {
-                    btn.innerHTML = '<span>▶</span> BẮT ĐẦU SUY LUẬN (INFERENCE)';
+                    btn.innerHTML = '<span>▶</span> RUN AI INFERENCE';
                 }, 3000);
             }
         }

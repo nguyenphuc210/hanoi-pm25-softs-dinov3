@@ -268,21 +268,28 @@ async def api_predict(
     t1_pred = forecast_list[0]
     
     if peak_pm25 <= 50.0:
-        status_text = "● Không khí An toàn (Đạt chuẩn QCVN 05:2023)"
+        status_text = "● Safe Air Quality (QCVN 05:2023 Standard)"
         status_color = "#10b981"
     elif peak_pm25 <= 80.0:
-        status_text = "● Chất lượng Trung bình / Kém (Cần lưu ý)"
+        status_text = "● Moderate / Unhealthy Air (Caution Advised)"
         status_color = "#f59e0b"
     else:
-        status_text = "⚠ Cảnh báo: Vượt mức an toàn quy chuẩn!"
+        status_text = "⚠ Warning: Exceeds Safe Air Quality Standard!"
         status_color = "#ef4444"
 
     # 16 điểm lịch sử gần nhất để hiển thị trực quan
     hist_sample = [round(float(v), 1) for v in data_arr[-16:, 0]]
     
-    # 24 điểm nhãn dự báo tương lai tính từ giờ hiện tại
-    now_dt = datetime.now()
-    fore_labels = [(now_dt + timedelta(hours=i+1)).strftime("%H:%M") for i in range(24)]
+    # 24 điểm nhãn dự báo tương lai nối tiếp liên tục từ mốc giờ lịch sử cuối cùng (00:00, 01:00, 02:00...)
+    if hist_labels and len(hist_labels) > 0:
+        try:
+            last_token = hist_labels[-1].split(" ")[-1]
+            last_h = int(last_token.split(":")[0])
+            fore_labels = [f"{(last_h + i + 1) % 24:02d}:00" for i in range(24)]
+        except Exception:
+            fore_labels = [(datetime.now() + timedelta(hours=i+1)).strftime("%H:00") for i in range(24)]
+    else:
+        fore_labels = [(datetime.now() + timedelta(hours=i+1)).strftime("%H:00") for i in range(24)]
 
     # Tính toán động các chỉ số đánh giá (MAE, RMSE, MAPE) theo đặc tính chuỗi dữ liệu thực tế
     recent_24h = data_arr[-24:, 0]
@@ -313,7 +320,7 @@ async def api_predict(
     total_w = sum(raw_weights)
     xai_weights = [round(w / total_w * 100.0, 1) for w in raw_weights]
     xai_weights[0] = round(100.0 - sum(xai_weights[1:]), 1)
-    xai_features = ["PM2.5 Quá khứ", "Tốc độ Gió", "Nhiệt độ", "Lượng Mưa", "Độ ẩm"]
+    xai_features = ["Historical PM2.5", "Wind Speed", "Temperature", "Precipitation", "Humidity"]
 
     inference_time = f"{round(time.time() - start_t, 2)}s"
 
