@@ -11,8 +11,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# Mặc định port 7860 cho Hugging Face Spaces hoặc cổng thông qua biến PORT
-ENV PORT=7860
-EXPOSE 7860
+# Đồng bộ cổng 10000 chuẩn Render Web Service
+ENV PORT=10000
+EXPOSE 10000
 
-CMD ["sh", "-c", "uvicorn app:app --host 0.0.0.0 --port ${PORT:-7860}"]
+CMD ["sh", "-c", "uvicorn app:app --host 0.0.0.0 --port ${PORT:-10000}"]
